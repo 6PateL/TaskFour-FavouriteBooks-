@@ -1,0 +1,62 @@
+﻿@model List<BookModel>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Books List
+            </h2>
+        </div>
+        <div class="col-14 text-end">
+            <a asp-action="Create" asp-controller="Home">
+                Add new book 
+            </a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped"> 
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th> 
+                Image
+            </th>
+            <th> 
+                Author
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr> 
+                <td> 
+                    @item.Name
+                </td>
+                <td>
+                    <img src="@Url.Action("GetImage", new { id = item.Id })" alt="Image" />
+                </td>
+                <td>
+                    @item.Author
+                </td>
+                <td> 
+                    @item.Description
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Home" asp-action="Edit" asp-route-Id="@item.Id">
+                        Edit
+                    </a>
+                    <a class="btn btn-secondary" asp-controller="Home" asp-action="Delete" asp-route-Id="@item.Id">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
