@@ -19,8 +19,13 @@ namespace TaskFour_FavouriteBooks_.Controllers
 
         public IActionResult Index()
         {
-            List<BookModel> list = _db.Books.ToList(); 
-            return View(list);
+            var user = _db.Users.FirstOrDefault(u => u.Email == User.Identity.Name);
+            if (user != null)
+            {
+                var books = _db.Books.Where(b => b.User.Id == user.Id).ToList();
+                return View();
+            }
+            return RedirectToAction("Login", "Registration");
         }
 
         public IActionResult GetImage(int Id)
@@ -44,6 +49,9 @@ namespace TaskFour_FavouriteBooks_.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = _db.Users.FirstOrDefault(u => u.Email == User.Identity.Name);
+                model.User = user;
+
                 var fileName = Path.GetFileName(model.ImageFile.FileName);
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", fileName); 
                 using(var stream = System.IO.File.Create(filePath))

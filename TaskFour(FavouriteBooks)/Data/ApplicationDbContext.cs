@@ -10,5 +10,6 @@ namespace TaskFour_FavouriteBooks_.Data
             
         }
         public DbSet<BookModel> Books { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

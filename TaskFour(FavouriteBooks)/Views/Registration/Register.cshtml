@@ -1,0 +1,25 @@
+﻿@model User
+
+<form method="post">
+    <div>
+        <h1>
+            Register
+        </h1>
+    </div>
+
+    <div>
+        <div>
+            <label asp-for="Email"></label>
+            <input asp-for="Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Password"></label>
+            <input asp-for="Password"/>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Register</button>
+        <p>Уже зарегестрированны?<a asp-controller="Registration" asp-action="Login">Login</a></p>
+    </div>
+</form>

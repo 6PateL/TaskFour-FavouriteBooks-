@@ -18,5 +18,6 @@ namespace TaskFour_FavouriteBooks_.Models
         public string Description { get; set; }
         [Required]
         public string Author { get; set; }
+        public User User { get; set; }
     }
 }
